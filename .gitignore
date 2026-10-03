@@ -5,3 +5,4 @@ Thumbs.db
 .vercel
 .playwright-mcp/
 v-*.jpeg
+.env*
