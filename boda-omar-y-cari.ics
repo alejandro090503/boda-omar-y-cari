@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Elysium Invitaciones//Boda Omar y Cari//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:boda-omar-y-cari-20270131@elysium
+DTSTAMP:20261002T000000Z
+DTSTART:20270131T220000Z
+DTEND:20270201T080000Z
+SUMMARY:Boda Omar & Cari
+LOCATION:Parroquia Santa María de Guadalupe\, C. Enrique Gómez Carrillo 5329-B\, Zapopan\, Jal.
+DESCRIPTION:Ceremonia religiosa 4:00 PM · Parroquia Santa María de Guadalupe
+Recepción 6:00 PM · La Folie Eventos\, Santa Cruz de las Flores
+https://boda-omar-y-cari.vercel.app
+URL:https://boda-omar-y-cari.vercel.app
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Mañana es la boda de Omar & Cari
+END:VALARM
+END:VEVENT
+END:VCALENDAR

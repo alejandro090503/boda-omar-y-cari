@@ -1,1 +1,9 @@
-{"rewrites":[{"source":"/(.*)","destination":"/index.html"}]}
+{
+  "headers": [
+    { "source": "/boda-omar-y-cari.ics", "headers": [
+      { "key": "Content-Type", "value": "text/calendar; charset=utf-8" },
+      { "key": "Content-Disposition", "value": "inline; filename=\"boda-omar-y-cari.ics\"" }
+    ] }
+  ],
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
