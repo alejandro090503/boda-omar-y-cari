@@ -145,6 +145,9 @@ button{font:inherit;color:inherit}
   background:linear-gradient(105deg,transparent 20%,rgba(255,240,205,.07) 42%,rgba(255,244,214,.2) 52%,rgba(255,240,205,.07) 60%,transparent 78%);
   animation:heroBeam 9s ease-in-out infinite 2.5s}
 @keyframes heroBeam{0%{left:-60%}55%{left:125%}100%{left:125%}}
+.hero-blur{display:none;position:absolute;inset:-4%;width:108%;height:108%;object-fit:cover;filter:blur(26px) brightness(.82) saturate(1.05);
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 56%,rgba(0,0,0,.86) 72%,rgba(0,0,0,.45) 87%,rgba(0,0,0,0) 100%);
+          mask-image:linear-gradient(to bottom,#000 0%,#000 56%,rgba(0,0,0,.86) 72%,rgba(0,0,0,.45) 87%,rgba(0,0,0,0) 100%)}
 .hero-veil{position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(to bottom,rgba(30,32,18,.10) 0%,rgba(30,32,18,.02) 34%,rgba(30,32,18,.34) 60%,rgba(30,32,18,.50) 76%,rgba(30,32,18,.16) 92%,rgba(30,32,18,0) 100%)}
 .hero-content{position:absolute;left:0;right:0;bottom:19%;z-index:2;display:flex;flex-direction:column;align-items:center;padding:0 5%;color:var(--crema)}
@@ -368,6 +371,13 @@ footer{
 .foot-credit a{color:var(--crema);text-decoration:none;display:inline-flex;align-items:center;gap:5px;border-bottom:1px solid rgba(241,232,217,.45)}
 .foot-credit svg{width:14px;height:14px}
 
+/* Mesa de regalos: Liverpool + Amazon */
+.mesa-btns{display:flex;flex-direction:column;align-items:center;gap:10px;margin:6px 0 10px}
+.mesa-btns .pill{min-width:210px;margin-top:0!important}
+.mesa-ev{font-size:15px!important;opacity:.92}
+/* El regalo salta: más chico y con aire arriba para que no se corte */
+.flip-row .lev--regalo svg{max-width:86px;margin-top:14px}
+
 /* Calendario */
 .cal-row{display:flex;flex-direction:column;align-items:center;gap:10px}
 .cal-row .pill{min-width:250px}
@@ -450,7 +460,10 @@ footer{
   .hero-content{bottom:12%}
 }
 @media (min-aspect-ratio:1/1){
-  .hero-img{object-position:50% 40%}
+  /* Pantalla horizontal: la foto vertical completa al centro (se ven los dos) y,
+     a los lados, la misma foto difuminada. En celular no cambia nada. */
+  .hero-img{object-fit:contain;object-position:50% 50%}
+  .hero-blur{display:block}
   .hero-content{bottom:7%}
   .hero-sprig{width:130px}
   .wheel-card{width:200px;height:300px;margin-left:-100px;margin-top:-150px}
@@ -483,13 +496,13 @@ footer{
 <div id="envelope-screen" role="button" tabindex="0" aria-label="Toca para abrir la invitación">
   <img id="env-image" src="sobre.webp" alt="" fetchpriority="high">
   <video id="env-video" muted playsinline preload="auto" aria-hidden="true">
-    <source src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/video/boda-omar-y-cari/sobre.mp4" type="video/mp4">
+    <source src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/video/boda-omar-y-cari/sobre-v2.mp4" type="video/mp4">
   </video>
   <div id="env-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10m0-1.5a1.5 1.5 0 0 1 3 0V11m0-1a1.5 1.5 0 0 1 3 0v4a6 6 0 0 1-6 6h-.5a6 6 0 0 1-4.8-2.4L4.3 14a1.5 1.5 0 0 1 2.4-1.8L9 15"/></svg><span data-i18n="env_hint">Toca para abrir</span></div>
 </div>
 <div id="env-flash" aria-hidden="true"></div>
 
-<audio id="music" src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/audio/boda-omar-y-cari/cancion.mp3" preload="none" loop playsinline></audio>
+<audio id="music" src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/audio/boda-omar-y-cari/cancion-v2.mp3" preload="none" loop playsinline></audio>
 <button class="vinyl-btn" id="music-btn" type="button" aria-label="Música">
   <div class="vinyl-tonearm"><div class="vinyl-tonearm-pivot"></div><div class="vinyl-tonearm-line"></div><div class="vinyl-tonearm-head"></div></div>
   <div class="vinyl-spin"><div class="vinyl-disc"><div class="vinyl-sheen"></div><img class="vinyl-label" src="logo-oc.webp" alt=""><div class="vinyl-hole"></div></div></div>
@@ -504,7 +517,7 @@ footer{
 
   <!-- PORTADA -->
   <header class="hero">
-    <div class="hero-media"><img class="hero-img" src="hero.webp" alt="Omar y Cari en el bosque" fetchpriority="high"><div class="hero-veil"></div><div class="hero-shimmer"></div></div>
+    <div class="hero-media"><img class="hero-blur" src="hero.webp" alt="" aria-hidden="true"><img class="hero-img" src="hero.webp" alt="Omar y Cari en el bosque" fetchpriority="high"><div class="hero-veil"></div><div class="hero-shimmer"></div></div>
     <div class="hero-content">
       <svg class="hero-sprig ic" viewBox="0 0 183.62 80.64" aria-hidden="true"><use href="#ic-sprig"/></svg>
       <div class="hero-frame"><h1 class="hero-name" aria-label="Omar &amp; Cari"><span>OMAR</span> <span>&amp;</span> <span>CARI</span></h1></div>
@@ -705,17 +718,20 @@ footer{
         </div>
       </div>
 
-      <!-- LIVERPOOL -->
+      <!-- MESA DE REGALOS: Liverpool + Amazon -->
       <div class="flip rv" role="button" tabindex="0" aria-expanded="false">
         <div class="flip-in">
           <div class="flip-face flip-front">
-            <div class="flip-row"><span class="lev lev--regalo"><svg class="ic" viewBox="0 0 85.63 86.39" aria-hidden="true"><use href="#ic-gift"/></svg></span><span class="flip-t">LIVERPOOL</span></div>
+            <div class="flip-row"><span class="lev lev--regalo"><svg class="ic" viewBox="0 0 85.63 86.39" aria-hidden="true"><use href="#ic-gift"/></svg></span><span class="flip-t" data-i18n-html="mesa_t">MESA DE<br>REGALOS</span></div>
             <span class="flip-more"><span data-i18n="ver_detalle">Ver detalle</span><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"/></svg></span>
           </div>
           <div class="flip-face flip-back">
-            <h3 data-i18n="liverpool_t">Mesa de regalos Liverpool</h3>
-            <p><span data-i18n="evento_no">Número de evento</span>: <b>60040421</b></p>
-            <div><a class="pill pill--crema" href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/60040421" target="_blank" rel="noopener" data-i18n="ver_mesa">Ver mesa de regalos</a></div>
+            <h3 data-i18n="mesas_t">Mesas de regalos</h3>
+            <div class="mesa-btns">
+              <a class="pill pill--crema" href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/60040421" target="_blank" rel="noopener">Liverpool</a>
+              <a class="pill pill--crema" href="https://www.amazon.com.mx/wedding/guest-view/37W8MC3CHFLCM" target="_blank" rel="noopener">Amazon</a>
+            </div>
+            <p class="mesa-ev"><span data-i18n="evento_no">Número de evento Liverpool</span>: <b>60040421</b></p>
             <span class="back-link" data-i18n="volver">Toca para volver</span>
           </div>
         </div>
@@ -836,7 +852,7 @@ var I18N = {
     mediante:'You can do so through:', sobre:'ENVELOPE', bancarios:'BANK<br>TRANSFER', ver_detalle:'See details',
     lluvia:'Envelope gift', lluvia_txt:'On the wedding day there will be a box at the reception where you can leave your envelope.',
     volver:'Tap to go back', transferencia:'Bank transfer', copiar:'Copy CLABE', copiado:'Copied!',
-    liverpool_t:'Liverpool gift registry', evento_no:'Event number', ver_mesa:'View registry',
+    mesa_t:'GIFT<br>REGISTRY', mesas_t:'Gift registries', evento_no:'Liverpool event number',
     esperamos:'We hope you can join us!', invitacion:'Invitation', personas:'Guests', estado:'Status', pendiente:'Pending',
     adultos:'With much love we have reserved a place especially for you. For organizational reasons, tickets are personal and non-transferable. Thank you for understanding that this will be an adults-only event.',
     album_t:'Share your moments on this special day', album_txt:'Scan the code and upload your favorite photos of the night to share them with us', album_btn:'Open album',
@@ -998,7 +1014,7 @@ function launchInvitation(){
     hint.style.opacity = '0';
     if(!vid || prefersReduced){ finish(); return; }
     /* El video termina en blanco: el destello entra poco antes del final */
-    var CORTE = 6.3;
+    var CORTE = 6.6;
     vid.addEventListener('timeupdate', function t(){ if(vid.currentTime >= CORTE){ vid.removeEventListener('timeupdate', t); finish(); } });
     vid.addEventListener('ended', finish, {once:true});
     vid.addEventListener('playing', function(){ vid.style.opacity = '1'; setTimeout(function(){ img.style.visibility = 'hidden'; }, 400); }, {once:true});
