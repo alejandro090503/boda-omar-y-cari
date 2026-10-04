@@ -10,8 +10,11 @@ for name in ['church', 'couple', 'dress', 'suit', 'envelope', 'card', 'gift', 's
     svg = (S / f'{name}.svg').read_text(encoding='utf-8')
     vb = re.search(r'viewBox="([^"]+)"', svg).group(1)
     inner = re.search(r'<svg[^>]*>(.*)</svg>', svg, re.S).group(1)
-    w, h = vb.split()[2:]
-    vbs[name] = f'0 0 {w} {h}'  # el <symbol> ya traduce su propio viewBox
+    # viewBox = rect real de cada dibujo en el PDF (antes solo medía extremos de trazos
+    # y el moño del regalo se cortaba) + un margen pequeño en los 4 lados.
+    x, y, w, h = map(float, vb.split()); pad = max(w, h) * .03
+    vb = f'{x-pad:.2f} {y-pad:.2f} {w+2*pad:.2f} {h+2*pad:.2f}'
+    vbs[name] = f'0 0 {w+2*pad:.2f} {h+2*pad:.2f}'  # el <symbol> ya traduce su propio viewBox
     symbols.append(f'  <symbol id="ic-{name}" viewBox="{vb}">{inner}</symbol>')
 
 alts = ['Omar y Cari al atardecer', 'Omar y Cari caminando en el puente', 'Omar y Cari en el bosque',
