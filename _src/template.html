@@ -460,11 +460,11 @@ footer{
   .hero-content{bottom:12%}
 }
 @media (min-aspect-ratio:1/1){
-  /* Pantalla horizontal: la foto vertical completa al centro (se ven los dos) y,
-     a los lados, la misma foto difuminada. En celular no cambia nada. */
-  .hero-img{object-fit:contain;object-position:50% 50%}
-  .hero-blur{display:block}
-  .hero-content{bottom:7%}
+  /* Computadora (como su Canva): foto a todo el ancho, recortada arriba y abajo,
+     encuadrada para que ellos y "OMAR & CARI" quepan en la primera pantalla.
+     En celular no cambia nada. */
+  .hero-img{object-fit:cover;object-position:50% 50%}
+  .hero-content{bottom:10%}
   .hero-sprig{width:130px}
   .wheel-card{width:200px;height:300px;margin-left:-100px;margin-top:-150px}
   .wheel-scene{height:460px}
