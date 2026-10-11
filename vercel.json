@@ -1,9 +1,30 @@
 {
   "headers": [
-    { "source": "/boda-omar-y-cari.ics", "headers": [
-      { "key": "Content-Type", "value": "text/calendar; charset=utf-8" },
-      { "key": "Content-Disposition", "value": "inline; filename=\"boda-omar-y-cari.ics\"" }
-    ] }
+    {
+      "source": "/boda-omar-y-cari.ics",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/calendar; charset=utf-8"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "inline; filename=\"boda-omar-y-cari.ics\""
+        }
+      ]
+    }
   ],
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/album",
+      "destination": "https://panel-invitados.vercel.app/subir/boda-omar-y-cari",
+      "permanent": false
+    }
+  ]
 }

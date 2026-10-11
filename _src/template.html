@@ -304,7 +304,11 @@ section{position:relative}
 .album .paper-in{text-align:center;padding:22px 16px 26px}
 .album h3{font-family:var(--display);font-weight:400;font-size:clamp(21px,6vw,25px);line-height:1.3;color:var(--olivo);margin-bottom:8px}
 .album p{font-style:italic;font-size:16px;line-height:1.5;color:var(--cafe);max-width:380px;margin:0 auto 16px}
-.album-qr{width:190px;margin:0 auto 18px;border-radius:12px;border:3px solid var(--salvia);overflow:hidden}
+.album-qr{position:relative;display:inline-flex;flex-direction:column;align-items:center;gap:18px;margin:0 auto 18px}
+.album-qr-img{display:block;width:190px;height:190px;border-radius:12px;border:3px solid var(--salvia);overflow:hidden}
+.album-qr.bloqueado .album-qr-img{filter:blur(7px);opacity:.75}
+.album-qr.bloqueado .album-btn{pointer-events:none;opacity:.45}
+.album-qr:not(.bloqueado) + .album-aviso{display:none}
 
 /* RSVP — diseño de boda-jennifer (tarjeta translúcida, filete doble, esquinas) en paleta salvia */
 .rsvp{padding:34px 0 46px;text-align:center;overflow:hidden}
@@ -745,10 +749,24 @@ footer{
     <div class="col">
       <div class="paper rv"><div class="paper-in">
         <svg class="sprig-dark ic" viewBox="{{VB:sprig}}" aria-hidden="true"><use href="#ic-sprig"/></svg>
-        <h3 data-i18n="album_t">Comparte tus momentos en este gran día</h3>
-        <p data-i18n="album_txt">Escanea el código y sube tus fotos favoritas de la noche para compartirlas con nosotros</p>
-        <img class="album-qr" src="album-qr.png" alt="Código QR del álbum de fotos" loading="lazy">
-        <a class="pill pill--olive" href="https://www.wedtrove.com/event/fvpcqTUt1G" target="_blank" rel="noopener" data-i18n="album_btn">Abrir álbum</a>
+        <h3 data-i18n="album_t">Álbum de fotos</h3>
+        <p data-i18n="album_txt">Ayúdanos a guardar cada momento: sube aquí las fotos que tomes durante el evento.</p>
+        <!-- Álbum de Elysium: el QR abre /album → panel-invitados.vercel.app/subir/boda-omar-y-cari -->
+        <div class="album-qr" data-fecha="2027-01-31">
+          <img class="album-qr-img" src="qr-album.png" alt="Código QR del álbum de fotos" width="190" height="190">
+          <a class="pill pill--olive album-btn" href="/album" data-i18n="album_btn">Subir mis fotos</a>
+        </div>
+        <p class="album-aviso" data-i18n="album_aviso">El álbum de fotos se habilita el día del evento. Regresa aquí y sube todas tus fotos de la noche ✨</p>
+        <script>
+    /* Se desbloquea solo el día del evento (la base además rechaza fotos antes de tiempo) */
+    (function(){
+      var box = document.querySelector('.album-qr');
+      if(!box) return;
+      var p = box.dataset.fecha.split('-');
+      var abre = new Date(+p[0], +p[1] - 1, +p[2], 0, 0, 0);
+      if(new Date() < abre) box.classList.add('bloqueado');
+    })();
+  </script>
       </div></div>
     </div>
   </section>
@@ -838,7 +856,7 @@ var I18N = {
     mesa_t:'GIFT<br>REGISTRY', mesas_t:'Gift registries', evento_no:'Liverpool event number',
     esperamos:'We hope you can join us!', invitacion:'Invitation', personas:'Guests', estado:'Status', pendiente:'Pending',
     adultos:'With much love we have reserved a place especially for you. For organizational reasons, tickets are personal and non-transferable. Thank you for understanding that this will be an adults-only event.',
-    album_t:'Share your moments on this special day', album_txt:'Scan the code and upload your favorite photos of the night to share them with us', album_btn:'Open album',
+    album_t:'Photo album', album_txt:'Help us keep every moment: upload here the photos you take during the event.', album_btn:'Upload my photos', album_aviso:'The photo album opens on the day of the event. Come back here and upload all your photos from the night ✨',
     confirma:'Kindly Reply', rsvp_eyebrow:'RSVP', pases_lbl:'Seats',
     rsvp_txt:'Your presence will make this day even more special. Please confirm your attendance and join us in celebrating the beginning of our new story.',
     gracias:'Thank you so much!', limite:'Reply by · Dec 15, 2026',
