@@ -492,7 +492,7 @@ footer{
 <div id="envelope-screen" role="button" tabindex="0" aria-label="Toca para abrir la invitación">
   <img id="env-image" src="sobre.webp" alt="" fetchpriority="high">
   <video id="env-video" muted playsinline preload="auto" aria-hidden="true">
-    <source src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/video/boda-omar-y-cari/sobre-v2.mp4" type="video/mp4">
+    <source src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/video/boda-omar-y-cari/sobre-v3.mp4" type="video/mp4">
   </video>
   <div id="env-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10m0-1.5a1.5 1.5 0 0 1 3 0V11m0-1a1.5 1.5 0 0 1 3 0v4a6 6 0 0 1-6 6h-.5a6 6 0 0 1-4.8-2.4L4.3 14a1.5 1.5 0 0 1 2.4-1.8L9 15"/></svg><span data-i18n="env_hint">Toca para abrir</span></div>
 </div>
@@ -1015,7 +1015,7 @@ function launchInvitation(){
     hint.style.opacity = '0';
     if(!vid || prefersReduced){ finish(); return; }
     /* El video termina en blanco: el destello entra poco antes del final */
-    var CORTE = 6.6;
+    var CORTE = 6.4;
     vid.addEventListener('timeupdate', function t(){ if(vid.currentTime >= CORTE){ vid.removeEventListener('timeupdate', t); finish(); } });
     vid.addEventListener('ended', finish, {once:true});
     vid.addEventListener('playing', function(){ vid.style.opacity = '1'; setTimeout(function(){ img.style.visibility = 'hidden'; }, 400); }, {once:true});
